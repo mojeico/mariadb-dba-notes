@@ -400,6 +400,7 @@ Move  data directory
 
 
 
+
 binary log - record database events and changes  - allow point-in-time recovery - 1GB
 /var/lib/mysql/mysql-bin.000001
 /var/lib/mysql/mysql-bin.index
