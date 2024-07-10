@@ -1,12 +1,6 @@
 
 
 
-cat /etc/my.cnf.d/server.cnf
-ls -l /var/lib/mysql/
-ls -l /usr/bin/mysql*
-
-
-
 
 
 Command:
@@ -370,14 +364,68 @@ ROLE
 
 
 
-
-
-
-
-
-
-
 ###############################################################################. SERVER CONFIGURATION #############################################
+
+
+mariadbd --verbose --help - check all options
+
+
+cat /etc/my.cnf.d/server.cnf - default configuration file 
+
+cat /etc/my.cnf
+
+
+
+strace mariadb -  The ‘strace’ command, akin to a detective, can assist you in tracing system calls and signals in your Linux system
+
+lsof -u mysql - Check all files opened by mysql 
+
+
+
+
+
+
+
+
+ls  /var/lib/mysql/    - keep data directory 
+
+
+Move  data directory 
+
+	 - stop mariadb - systemctl stop mariadb
+     - mv * prod
+     - chown -R mysql:mysql  prod
+	 - add "datadir = /var/lib/mysql/prod" in /etc/my.cnf.d/server.cnf (mysqld) 
+
+
+
+
+binary log - record database events and changes  - allow point-in-time recovery - 1GB
+/var/lib/mysql/mysql-bin.000001
+/var/lib/mysql/mysql-bin.index
+
+
+- show binary logs; - show files and size 
+- show binlog events in 'mysql-bin.000001' ; - show all events in binlog file 
+- purge binary logs to 'mysql-bin.000004'; - delete binary logs from 0 to 4 
+- mariadb-binlog 
+
+
+
+
+
+
+
+
+
+
+ls -l /var/lib/mysql/
+ls -l /usr/bin/mysql*
+
+
+
+
+
 
 
 
