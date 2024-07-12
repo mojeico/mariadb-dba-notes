@@ -416,6 +416,15 @@ binary log - record database events and changes  - allow point-in-time recovery 
 
 
 
+show variables like "%error%"; -> log_error
+
+
+- touch  /var/log/mariadb/errorlog/error.log - create dir and file
+-  chown -R mysql:mysql  /var/log/mariadb
+- log-error = /var/log/mariadb/errorlog/error.log - add in /etc/my.cnf.d/server.cnf (mysqld)
+
+
+
 
 
 
@@ -423,6 +432,45 @@ binary log - record database events and changes  - allow point-in-time recovery 
 ls -l /var/lib/mysql/
 ls -l /usr/bin/mysql*
 
+
+
+###############################################################################. INNODB STORAGE CONFIGURATION  #############################################
+
+
+
+INNODB BUFFER POOL - table cache and index data
+
+
+show engine innodb status
+SHOW VARIABLES LIKE 'innodb_buffer_pool_size';
+
+
+- add innodb-buffer-pool-size = 25M in /etc/my.cnf.d/server.cnf (mysqld)
+
+
+
+
+
+
+
+INNODB LOG BUFFER - holds data to be written to log file - allow transactions to run without commiting
+
+
+- show global variables like '%innodb_log_buffer_size%';
+- show global status like 'innodb_log_waits'; - The number of times that the log buffer was too small and a wait was required for it to be flushed before continuing. If more than 10, have to increase innodb_log_buffer_size
+
+
+
+
+INNODB FLUSH METHOD - determines how data flushes (move) from memory to disk
+
+
+
+show global variables like "innodb_flush_method"; == mariadbd  --verbose --help | grep innodb-flush-method
+
+
+
+- add innodb-flush-method = O_DIRECT in /etc/my.cnf.d/server.cnf (mysqld)
 
 
 
