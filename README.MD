@@ -475,6 +475,31 @@ show global variables like "innodb_flush_method"; == mariadbd  --verbose --help 
 
 
 
+DOUBLEWRITER BUFFER
+
+- READ MORE INFORMATION
+
+
+
+
+
+INNODB REDO LOG FILES - about data recovery - for crash recovery -disk data structure - using for correcting data written by incomplete transactions
+
+/var/lib/mysql/ib_logfile0
+
+- READ MORE INFORMATION
+
+
+
+
+SYSTEM TABLESPACE - storage aria for change buffer
+file: ibdata1 (in datadir)
+
+
+
+UNDO TABLESPACE - information how to undo the latest changes by trx
+
+file: undo001,undo002,.... (in datadir)
 
 
 
@@ -482,6 +507,20 @@ show global variables like "innodb_flush_method"; == mariadbd  --verbose --help 
 
 
 
+
+
+
+DEDICATED SERVER - use all resource of instance
+
+
+show global variables like '%dedicated%';
+
+
+
+
+
+
+###############################################################################. BACKUP & RECOVERY   #############################################
 
 
 
