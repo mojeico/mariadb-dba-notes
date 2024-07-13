@@ -524,10 +524,47 @@ show global variables like '%dedicated%';
 
 
 
+PHYSICAL / COLD BACKUP - copy instance files (no backup tool is required) - when database OFFLINE
+
+1) shutdown mysql
+2) copy all data derectory(user-space), system tablespace(system-space) and option files (any *.cnf files )
 
 
 
+- show global variables like "datadir"; - (user-space)
+- show global variables like "innodb_data_home_dir"; - (system-space)
 
+
+
+LOGICAL BACKUP - only data(database and tables) backup by dump or pump, generate sql file
+
+
+- mariadb-dump --all-databases > a.sql
+- mariadb < a.sql   - restore
+
+
+
+HOT BACKUP -  copy instance files (no backup tool is required) - when database ONLINE - xtrabackup or  mariadb-backup
+
+
+- yum install MariaDB-backup
+
+
+- yum install https://repo.percona.com/yum/percona-release-latest.noarch.rpm
+- sudo percona-release enable-only tools release
+- sudo yum install percona-xtrabackup-80
+
+
+
+- xtrabackup --backup --user=username_dba --host=localhost --port=3306 --password=password  --target-dir=~/backup
+
+
+
+-  mariadb-backup ----- need to read article
+
+
+
+- mariadb  -u username_dba -p (password)
 
 
 
