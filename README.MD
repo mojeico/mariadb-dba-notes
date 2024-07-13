@@ -576,6 +576,7 @@ HOT BACKUP -  copy instance files (no backup tool is required) - when database O
 
 
 
+###############################################################################. SERVER REPLICATION   #############################################
 
 
 
