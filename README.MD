@@ -580,6 +580,73 @@ HOT BACKUP -  copy instance files (no backup tool is required) - when database O
 
 
 
+METHODS
+
+- Traditional - base on binary log file
+	- replication events from primary binary log file
+- GTID - global transactions indetifier
+ 	- Newer method, not work with binary log file
+	- transactions apply to the replica
+ 	- Recomended way
+
+
+
+
+TRADITIONAL METHOD BASE ON BINARY LOG;
+
+
+-------- MASTER ----------
+- Enable binary log
+
+		log_bin_index     -  /var/lib/mysql/mysql-bin.index
+        log_bin_basename  -  /var/lib/mysql/prod/mysql-bin
+	    log_bin           -  ON
+
+- Set server id
+
+		server_id         -  1
+
+- Create user for replication user
+
+		CREATE USER IF NOT EXISTS replicator IDENTIFIED BY 'password';
+		GRANT REPLICATION SLAVE ON *.* TO replicator;
+		FLUSH PRIVILEGES;
+
+- Set binary log format
+
+		binlog_format  	  - MIXED
+
+- Check master status
+
+		 SHOW MASTER STATUS;
+
+
+-------- REPLICA --------
+
+- Enable relay log
+
+
+		relay-log  = /var/lib/mysql/mysql-relay
+		relay-log-index  = /var/lib/mysql/mysql-relay.index
+
+		read-only
+
+		skip-slave-start
+
+- Set server id
+
+		server_id         -  2
+
+- Change mastr statement
+
+	    change master to master_host='10.214.0.2', master_user='replicator', master_password='password', master_port=3306, master_log_file='mysql-bin.000011', master_log_pos=342;
+
+- start replica
+
+		start replica;
+		show replica status\G;
+
+		in master - SHOW replica  HOSTS;
 
 
 
