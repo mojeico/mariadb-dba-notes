@@ -592,7 +592,7 @@ METHODS
 
 
 
-TRADITIONAL METHOD BASE ON BINARY LOG;
+TRADITIONAL METHOD BASE ON BINARY LOG FOR REPLICAS ;
 
 
 -------- MASTER ----------
@@ -652,10 +652,11 @@ TRADITIONAL METHOD BASE ON BINARY LOG;
 
 
 
+GTID METHOD FOR REPLICAS ;
 
-
-
-
+#
+# after all course cehck it again in Udemy and recreate VM in GCP 
+#
 
 
 
