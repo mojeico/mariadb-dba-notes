@@ -655,7 +655,7 @@ TRADITIONAL METHOD BASE ON BINARY LOG FOR REPLICAS ;
 GTID METHOD FOR REPLICAS ;
 
 #
-# after all course cehck it again in Udemy and recreate VM in GCP 
+# after all course cehck it again in Udemy and recreate VM in GCP
 #
 
 
@@ -664,6 +664,7 @@ GTID METHOD FOR REPLICAS ;
 
 
 
+###############################################################################. MAX SCALE    #############################################
 
 
 
